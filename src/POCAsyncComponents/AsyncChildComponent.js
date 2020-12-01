@@ -16,10 +16,10 @@ const AsyncChildComponent = ({ styles, title, delayTime, isSuccess }) => {
 
     const apiCallDispatch = useCallback(
         async () => {
-            setLocalStates(true, '');
+            setLocalStates({ isLoading: true, msg: '' });
             mockAPI(delayTime, isSuccess)
-                .then(response => setLocalStates(false, response))
-                .catch(response => setLocalStates(false, response))
+                .then(response => setLocalStates({ isLoading: false, msg: response }))
+                .catch(response => setLocalStates({ isLoading: false, msg: response }))
         },
         [delayTime, isSuccess, setLocalStates],
     );
